@@ -15,9 +15,11 @@ namespace DatingApp.API.Controllers
         public AuthController(IAuthRepository repo) => _repo = repo;
     
         [HttpPost("register")]
-        public async Task<IActionResult> Register(UserForRegisterDto userForRegisterDto)//api controller takes data FromBody by default
+        public async Task<IActionResult> Register(UserForRegisterDto userForRegisterDto)//[ApiController] takes data FromBody by default
         {
             // validate request
+            //if(!ModelState.IsValid) // We don't need this because [ApiController] makes it for us
+            //    return BadRequest(ModelState);
 
             userForRegisterDto.Username = userForRegisterDto.Username.ToLower();
 
